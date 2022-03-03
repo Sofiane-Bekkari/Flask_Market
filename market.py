@@ -13,7 +13,11 @@ def home():
 
 @app.route("/market")
 def market_page():
-    items = {"id":1, "name":'phone', "price":50}
+    items = [
+    {'id': 1, 'name': 'Phone', 'barcode': 192734625, 'price': 50},
+    {'id': 2, 'name': 'Desktop', 'barcode': 192734625, 'price': 550},
+    {'id': 3, 'name': 'Laptop', 'barcode': 192734625, 'price': 350}
+    ]
     return render_template('market.html', items=items)
 
 

@@ -23,7 +23,6 @@
               <a class="nav-link" href="#">Pricing</a>
             </div>
             <div class="navbar-nav">
-              
                 <a class="nav-link" href="#">Register</a>
                 <a class="nav-link disabled">Login</a>
               </div>
@@ -32,7 +31,36 @@
       </nav>
       <!--END NAV-->
     <h1>Market PAGE</h1>
-    <p>{{ items }}</p>
+    <!--TABLE-->
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <!--Your Columns HERE-->
+          <th scop="col">ID</th>
+          <th scop="col">Name</th>
+          <th scop="col">Barcode</th>
+          <th scop="col">Price</th>
+          <th scop="col">Options</th>
+        </tr>
+        <tbody>
+          <!--Your rows inside the table HERE-->
+          <!--JINJA CODE-->
+          {% for item in items %}
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.barcode }}</td>
+              <td>{{ item.price }}$</td>
+              <!--BUTTONS-->
+              <td>
+                <button class="btn btn-outline btn-info">More info</button>
+                <button class="btn btn-outline btn-success">Purchase this item</button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </thead>
+    </table>
     <!--JS BOOTSTRAP-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
