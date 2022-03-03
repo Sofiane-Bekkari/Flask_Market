@@ -8,7 +8,7 @@ app = Flask(__name__) # MOST IMPORTENT APP
 
 @app.route("/")
 @app.route("/home")
-def home():
+def home_page():
     return render_template('home.html')
 
 @app.route("/market")
