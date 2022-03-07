@@ -1,0 +1,41 @@
+<!--THE MAIN TEMPLATE-->
+{% extends 'layout.html' %}
+
+<!--TAB TITLE-->
+{% block title %}
+    Register Page
+{% endblock %}
+
+<!--BODY CONTENT-->
+{% block body %}
+    <body class="text-center">
+        <form method="POST" class="form-register" style="color:white">
+            <img class="mb-4" src="{{ url_for('static', filename='image/laser-gun.png') }}" width="200px" alt="icon-is-not-show">
+            <div class="container">
+                <h2>REGISTER PAGE</h2>
+                <br>
+
+                <!--USERNAME-->
+                {{ form.username.label() }}
+                {{ form.username(class="form-control", placeholder="User Name") }}
+                
+                <!--EMAIL-->
+                {{ form.email.label() }}
+                {{ form.email(class="form-control", placeholder="Email") }}
+                
+                <!--PASSWORD-->
+                {{ form.password.label() }}
+                {{ form.password(class="form-control", placeholder="Password") }}
+                
+                <!--PASSWORD CONFIRM-->
+                {{ form.confirm_password.label() }}
+                {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+                <br>
+                <!--BUTTON-->
+                {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+            </form>
+            
+        </div>
+    </body>
+
+{% endblock %}
