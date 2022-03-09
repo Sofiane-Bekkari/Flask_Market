@@ -8,3 +8,5 @@
 ### Creat a Package market/dic
 ### Relationships Model User
 ### Form flask wtform/flask-wtf     
+### Flask Validation user
+### Flash alert messages
