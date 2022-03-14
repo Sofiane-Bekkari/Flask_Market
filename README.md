@@ -8,5 +8,6 @@
 ### Creat a Package market/dic
 ### Relationships Model User
 ### Form flask wtform/flask-wtf     
-### Flask Validation user
+### Flask Validation user USERNAME/EMAIL
 ### Flash alert messages
+### Install flask_bcrypt for hash_password
