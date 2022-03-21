@@ -1,0 +1,43 @@
+<!--THE MAIN TEMPLATE-->
+{% extends 'layout.html' %}
+
+<!--TAB TITLE-->
+{% block title %}
+    Login Page
+{% endblock %}
+
+<!--BODY CONTENT-->
+{% block body %}
+    <body class="text-center">
+        <form method="POST" class="form-signin" style="color:white">
+            <!--SECURITY LAYER-->
+            {{ form.hidden_tag() }}
+            <!--AFTER POST METHOD-->
+            <img class="mb-4 mt-4" src="{{ url_for('static', filename='image/coin-bag.ico') }}" width="50px" alt="icon-is-not-show">
+            <div class="container">
+                <h2>LOGIN PAGE</h2>
+                <br>
+                 <!--USERNAME-->
+                 {{ form.username.label() }}
+                 {{ form.username(class="form-control", placeholder="User Name") }}
+                
+                 
+                 <!--PASSWORD-->
+                 {{ form.password.label() }}
+                 {{ form.password(class="form-control", placeholder="Password") }}
+                 <br>
+
+                 <div class="checkbox mb-3">
+                    <h6>You don't have an account?</h6>
+                    <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page') }}">Register</a>
+                 </div>
+
+                 <!--BUTTON-->
+                 {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+
+            </form>
+            
+        </div>
+    </body>
+
+{% endblock %}

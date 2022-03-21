@@ -1,7 +1,7 @@
 # ROUTES 
 from market import app, db # FROM MARKET PACKAGE
 from market.model import Item, User # FROM SUB MARKET/MODEL
-from market.form import RegisterForm # FROM SUB MARKET/FORM
+from market.form import RegisterForm, LoginForm # FROM SUB MARKET/FORM
 from flask import render_template, redirect, url_for, flash # NATIVE FLASK
 
 
@@ -21,7 +21,7 @@ def market_page():
 def register_page():
     form = RegisterForm()
     if form.validate_on_submit():
-        user_to_create = User(username=form.username.data, email=form.email.data, hash_password=form.password.data)
+        user_to_create = User(username=form.username.data, email=form.email.data, password=form.password.data)
 
         db.session.add(user_to_create)
         db.session.commit()
@@ -38,8 +38,10 @@ def register_page():
     return render_template('register.html', form=form)
 
 
-
-
+@app.route('/login', methods=['GET','POST']) # LOGIN
+def login_page():
+    form = LoginForm()
+    return render_template('login.html', form=form)
 
 
 

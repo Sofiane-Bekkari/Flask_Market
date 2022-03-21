@@ -5,7 +5,7 @@ from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationE
 from market.model import User # User to check username & email is alraedy exist
 
 # CREATE CLASS REGISTRE FORM
-class RegisterForm(FlaskForm): # NEED TO PASS AN ARGUMENT
+class RegisterForm(FlaskForm): # NEED TO PASS AN ARGUMENT FlaskForm
 
     ## VALIDATION USERNAME
     def validate_username(self, username_to_check):
@@ -25,3 +25,10 @@ class RegisterForm(FlaskForm): # NEED TO PASS AN ARGUMENT
     password = PasswordField(label='Password', validators=[Length(min=6), DataRequired()])
     confirm_password = PasswordField(label='Confirm Password', validators=[EqualTo('password'), DataRequired()])# pass it as STRING
     submit = SubmitField(label='Create Account')
+
+
+ # LOGIN FORM
+class LoginForm(FlaskForm):
+    username = StringField(label='Enter Name',  validators=[DataRequired()])
+    password = PasswordField(label='Password',  validators=[DataRequired()])
+    submit = SubmitField(label='Sign in')

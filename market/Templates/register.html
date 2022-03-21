@@ -13,7 +13,7 @@
             <!--SECURITY LAYER-->
             {{ form.hidden_tag() }}
             <!--AFTER POST METHOD-->
-            <img class="mb-4" src="{{ url_for('static', filename='image/laser-gun.png') }}" width="200px" alt="icon-is-not-show">
+            <img class="mb-4 mt-4" src="{{ url_for('static', filename='image/coin-bag.ico') }}" width="50px" alt="icon-is-not-show">
             <div class="container">
                 <h2>REGISTER PAGE</h2>
                 <br>
@@ -34,8 +34,13 @@
                 {{ form.confirm_password.label() }}
                 {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
                 <br>
+
+                <div class="checkbox mb-3">
+                    <h6>Already have an account?</h6>
+                    <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Login</a>
+                 </div>
                 <!--BUTTON-->
-                {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+                {{ form.submit(class="btn btn-primary btn-lg btn-block")}}
             </form>
             
         </div>

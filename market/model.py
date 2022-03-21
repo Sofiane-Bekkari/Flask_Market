@@ -1,5 +1,6 @@
 from xml.dom.pulldom import default_bufsize
 from market import db ## need to be imported from market dirctory
+from market import bcrypt ## for password hash
 
 # MODEL FOR USERS
 class User(db.Model):
@@ -9,6 +10,15 @@ class User(db.Model):
     hash_password = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer(), nullable=False, default=1000)
     items = db.relationship('Item', backref='owner_user', lazy=True)# RELATIONSHIP TO CONNECT OTHER TABLE
+
+    # ADDED THIS FOR HASHING PASSWORD
+    @property
+    def password(self):
+        return self.password
+
+    @password.setter
+    def password(self, plain_text_password):
+        self.hash_password = bcrypt.generate_password_hash(plain_text_password).decode('utf-8')
 
 # MODEL DB CLASS ITEM
 class Item(db.Model):
