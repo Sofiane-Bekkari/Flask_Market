@@ -12,3 +12,4 @@
 ### Flash alert messages
 ### Install flask_bcrypt for hash_password
 ### Added login page with LoginForm
+### Install flask_login / login Manager / authenticat user / check password * username

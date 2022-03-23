@@ -28,11 +28,26 @@
               <a class="nav-link active" href="{{ url_for('home_page') }}">Home</a>
               <a class="nav-link" href="{{ url_for('market_page') }}">Market</a>
             </div>
-            <div class="navbar-nav">
-              
+            <!--IF USER IS LOGIN SUCCESS-->
+            {% if current_user.is_authenticated %}
+
+              <div class="navbar-nav">
+                <a class="nav-link" style="color: lawngreen; font-weight: bold">
+                  <i class="fas fa-coins"></i>
+                  {{ current_user.prettier_budget }}
+                </a>
+                <a class="nav-link">Welcome, <strong>{{ current_user.username }}</strong></a>
+                <a class="nav-link" href="#">Logout</a>
+              </div> 
+
+            <!--IF NO ONE IS LOGIN YET-->
+            {% else %}
+              <div class="navbar-nav">
                 <a class="nav-link"  href="{{ url_for('register_page') }}">Register</a>
                 <a class="nav-link" href="{{ url_for('login_page') }}">Login</a>
               </div>
+            {% endif %}
+            
           </div>
         </div>
       </nav>
@@ -60,6 +75,8 @@
 
     <!--JS BOOTSTRAP-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!--FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/45f3285f50.js" crossorigin="anonymous"></script>
 
     <!--DARK MODE TRICK-->
     <style>
