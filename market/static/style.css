@@ -1,0 +1,18 @@
+.container-title {
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    top: 25%;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.253);
+}
+#btn-str {
+    border: solid greenyellow;
+    width: 150px;
+    text-align: center;
+    margin: 0 auto;
+}

@@ -10,6 +10,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db' # CONFIGURATION ur
 app.config['SECRET_KEY'] = 'df57a2f290b592ec7032b833' # SECRET KEY
 db = SQLAlchemy(app) # SETTING UP DATABASE
 bcrypt = Bcrypt(app) # HASH PASSWORD
-login_manager = LoginManager(app) # LOGIN MANAGEMENT 
-
+login_manager = LoginManager(app) # LOGIN MANAGEMENT
+login_manager.login_view = "login_page" # redirect to this route
+login_manager.login_message_category = "info" # flash messages alert
 from market import route

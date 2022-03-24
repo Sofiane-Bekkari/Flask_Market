@@ -3,7 +3,7 @@ from market import app, db # FROM MARKET PACKAGE
 from market.model import Item, User # FROM SUB MARKET/MODEL
 from market.form import RegisterForm, LoginForm # FROM SUB MARKET/FORM
 from flask import render_template, redirect, url_for, flash # NATIVE FLASK
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required # LOGIN SYSTEM
 
 
 @app.route("/") # FIRST HANDEL PAGE
@@ -12,6 +12,7 @@ def home_page():
     return render_template('home.html')
 
 @app.route("/market") # MARKET
+@login_required # for require user to log before visted the page!
 def market_page():
     # SHOW ITEM TABLE FROM DATABASE
     items = Item.query.all() # ALL ITEMS
@@ -27,7 +28,9 @@ def register_page():
 
         db.session.add(user_to_create)
         db.session.commit()
-        print("Valid Submit")
+
+        login_user(user_to_create) # SUCCESSFULY LOGIN
+        flash(f'Successful! Created an account you are logged in as: {user_to_create.username}', category='success') # WELCOME MSG!
 
         return redirect(url_for('market_page'))
 
@@ -57,6 +60,20 @@ def login_page():
     return render_template('login.html', form=form)
 
 
+@app.route('/logout')
+def logout_page():
+
+    logout_user()
+    flash("You have been logged out!", category='info')
+
+    return redirect(url_for("home_page"))
+
+
+### THESE FOR TESTING PURPOSES
+@app.route('/admin')
+@login_required # MANDATORY 
+def admin_page():
+    return f'<h1>Admin page is welcoming!</h1> I believe you do whatever you want here so..'
 
 @app.route("/about/<username>")
 def about_user(username):
