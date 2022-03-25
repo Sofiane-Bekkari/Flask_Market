@@ -8,37 +8,52 @@
 
 <!--BODY CONTENT-->
 {% block body %}
-  <h1>Market!</h1>
-<!--TABLE-->
-  <table class="table table-hover table-dark">
-    <thead>
-      <tr>
-        <!--Your Columns HERE-->
-        <th scop="col">ID</th>
-        <th scop="col">Name</th>
-        <th scop="col">Barcode</th>
-        <th scop="col">Price</th>
-        <th scop="col">Options</th>
-      </tr>
-      <tbody>
-        <!--Your rows inside the table HERE-->
-        <!--JINJA CODE-->
-        {% for item in items %}
-          <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.product }}</td>
-            <td>{{ item.barcode }}</td>
-            <td>{{ item.price }}$</td>
-            <!--BUTTONS-->
-            <td>
-              <button class="btn btn-outline btn-info">More info</button>
-              <button class="btn btn-outline btn-success">Purchase this item</button>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </thead>
-  </table>
+<h1 class="text-center">Market!</h1>
+<div class="row ms-5 mt-5">
+  <h3>Available items on The Market</h3>
+  <p>Pick'up what you looking for!</p>
+  <br>
+  <div class="col-6">
+    <!--TABLE-->
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <!--Your Columns HERE-->
+          <th scop="col">ID</th>
+          <th scop="col">Name</th>
+          <th scop="col">Barcode</th>
+          <th scop="col">Price</th>
+          <th scop="col">Options</th>
+        </tr>
+        <tbody>
+          <!--Your rows inside the table HERE-->
+          <!--JINJA CODE-->
+          {% for item in items %}
+          <!--INCLUDE THIS MODAL INSIDE FOR LOOP-->
+          {% include 'include/item_modal.html' %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.product }}</td>
+                <td>{{ item.barcode }}</td>
+                <td>{{ item.price }}$</td>
+                <td>
+                  <!--BUTTONS FOR DISPLAY SPICIFIC MODAL-->
+                  <button class="btn btn-outline btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{ item.id }}">More info</button>
+                  <button class="btn btn-outline btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop2-{{ item.id }}">Purchase this item</button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+       </thead>
+     </table>
+
+    </div>
+    <div class="col-4">
+      <h3>Owner items</h3>
+      <p>Sell any item to bring it on Market now!</p>
+      <br>
+    </div>
+  </div>
 
 {% endblock %}
 

@@ -1,0 +1,49 @@
+<style>
+    .modal-content {
+        background-color: #212121;
+    }
+</style>
+  
+  <!-- Modal -->
+  <!--ADD ITEM ID ON EACH MODAL-->
+  <div class="modal fade" id="staticBackdrop-{{item.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+             <!--PUT THE PRODUCT NAME HERE-->
+          <h5 class="modal-title" id="staticBackdropLabel">{{ item.product }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!--PUT THE DESCRIPTIONS HERE-->
+            {{ item.description }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal For Purchase Confirm-->
+  <!--ADD ITEM ID ON EACH MODAL-->
+  <div class="modal fade" id="staticBackdrop2-{{item.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+             <!--PUT THE PRODUCT NAME HERE-->
+          <h5 class="modal-title" id="staticBackdropLabel">{{ item.product }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <!--PUT THE DESCRIPTIONS HERE-->
+            Do you real want to Purchase this <strong>{{ item.product }}</strong> price of <strong>{{ item.price }}</strong>$ ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>

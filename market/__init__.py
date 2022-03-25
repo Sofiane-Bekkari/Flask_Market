@@ -13,4 +13,5 @@ bcrypt = Bcrypt(app) # HASH PASSWORD
 login_manager = LoginManager(app) # LOGIN MANAGEMENT
 login_manager.login_view = "login_page" # redirect to this route
 login_manager.login_message_category = "info" # flash messages alert
-from market import route
+
+from market import route # FOR NAVIGATION ROUTES
