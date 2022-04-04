@@ -14,4 +14,5 @@
 ### Added login page with LoginForm
 ### Install flask_login / login Manager / authenticat user / check password * username
 ### Logout user / login Required / we can use view to change route
-### Add Directory Include inside Templates / Modal for info/purchase Buttons 
+### Add Directory Include inside Templates / Modal for info/purchase Buttons
+### Added a buy functionallty only   

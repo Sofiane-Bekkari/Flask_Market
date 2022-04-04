@@ -20,7 +20,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
         </div>
       </div>
     </div>
@@ -37,12 +36,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <!--PUT THE DESCRIPTIONS HERE-->
-            Do you real want to Purchase this <strong>{{ item.product }}</strong> price of <strong>{{ item.price }}</strong>$ ?
+            <!--PUT THE FORM FOR BUY/SELL HERE-->
+            <form method="POST">
+              {{ purchase_form.hidden_tag() }}
+
+              <h4 class="test-center">
+                Do you real want to Purchase this <strong>{{ item.product }}</strong> price of <strong>{{ item.price }}</strong>$ ?
+              </h4>
+              <br>
+              <h6 class="text-center">
+                By clicking to But you are going to purchase this itme!  
+              </h6>
+              <br>
+              <!--THIS FOR BACK-END INFO FOR ITEM NAME-->
+              <input id="purchased_item" name="purchased_item" type="hidden" value="{{ item.product }}">
+              {{ purchase_form.submit(class="btn btn-outline-success btn-block") }}
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
         </div>
       </div>
     </div>

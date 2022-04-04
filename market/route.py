@@ -1,9 +1,10 @@
 # ROUTES 
+from ast import If
+from flask import render_template, redirect, url_for, flash, Request, request # NATIVE FLASK
 from market import app, db # FROM MARKET PACKAGE
 from market.model import Item, User # FROM SUB MARKET/MODEL
-from market.form import RegisterForm, LoginForm # FROM SUB MARKET/FORM
-from flask import render_template, redirect, url_for, flash # NATIVE FLASK
-from flask_login import login_user, logout_user, login_required # LOGIN SYSTEM
+from market.form import RegisterForm, LoginForm, BuyForm, SellForm # FROM SUB MARKET/FORM
+from flask_login import login_user, logout_user, login_required, current_user # LOGIN SYSTEM
 
 
 @app.route("/") # FIRST HANDEL PAGE
@@ -11,13 +12,31 @@ from flask_login import login_user, logout_user, login_required # LOGIN SYSTEM
 def home_page():
     return render_template('home.html')
 
-@app.route("/market") # MARKET
+
+
+@app.route("/market", methods=['GET','POST']) # MARKET
 @login_required # for require user to log before visted the page!
 def market_page():
+    # BUY FORM 
+    purchase_form = BuyForm()
+    
+    if request.method == "POST":
+        item_name_is = request.form.get('purchased_item') # I have an issue here !!!
+        p_item_object = Item.query.filter_by(product=item_name_is).first()
+        print(f'Here name {item_name_is} And here Object {p_item_object.price}')
+        # Update Databes
+        if p_item_object:
+            p_item_object.owner = current_user.id
+            current_user.budget -= p_item_object.price
+            print(item_name_is, "Things happended TOO!")
+            db.session.commit()
+        
     # SHOW ITEM TABLE FROM DATABASE
     items = Item.query.all() # ALL ITEMS
     
-    return render_template('market.html', items=items)
+    return render_template('market.html', items=items, purchase_form=purchase_form)
+
+
 
 @app.route("/register", methods=['GET','POST']) # REGISTER
 def register_page():
@@ -43,6 +62,7 @@ def register_page():
     return render_template('register.html', form=form)
 
 
+
 @app.route('/login', methods=['GET','POST']) # LOGIN
 def login_page():
     form = LoginForm()
@@ -58,6 +78,7 @@ def login_page():
             flash(f'Username or Password was uncorrect! Please try again.', category='danger') # FIALD MSG! 
 
     return render_template('login.html', form=form)
+
 
 
 @app.route('/logout')
