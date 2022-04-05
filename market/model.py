@@ -50,3 +50,9 @@ class Item(db.Model):
     # FOR BETTER VIEW ITEM IN DB
     def __repr__(self):
         return f'Item {self.product}'
+
+    # BUY METHOD
+    def buy(self, user):  
+        self.owner = user.id
+        user.budget -= self.price
+        db.session.commit()

@@ -15,4 +15,5 @@
 ### Install flask_login / login Manager / authenticat user / check password * username
 ### Logout user / login Required / we can use view to change route
 ### Add Directory Include inside Templates / Modal for info/purchase Buttons
-### Added a buy functionallty only   
+### Added a buy functionallty only
+### Add check logic for enough budget to buy / redirect user   

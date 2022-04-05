@@ -26,13 +26,19 @@ def market_page():
         print(f'Here name {item_name_is} And here Object {p_item_object.price}')
         # Update Databes
         if p_item_object:
-            p_item_object.owner = current_user.id
-            current_user.budget -= p_item_object.price
-            print(item_name_is, "Things happended TOO!")
-            db.session.commit()
-        
-    # SHOW ITEM TABLE FROM DATABASE
-    items = Item.query.all() # ALL ITEMS
+            # check user Buget
+            if current_user.budget >= p_item_object.price:
+
+                p_item_object.buy(current_user) ## this method come from itme model 
+                flash(f"Thank you! you purchase this item {item_name_is} price of {p_item_object.price}$", category='success')
+            else:
+                flash("Please you don't have enough money to buy this", category='danger')
+
+            return redirect(url_for('market_page'))
+
+    if request.method == "GET":
+        # SHOW ITEM TABLE FROM DATABASE
+        items = Item.query.filter_by(owner=None) # ALL ITEMS WITH NONE OWNER
     
     return render_template('market.html', items=items, purchase_form=purchase_form)
 
